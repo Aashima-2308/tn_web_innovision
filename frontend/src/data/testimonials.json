@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Ananya Sharma",
+    "text": "TechNeeds completely transformed my understanding of web development. The structured mentorship approach made complex concepts feel approachable.",
+    "rating": 5,
+    "program": "Web Development"
+  },
+  {
+    "name": "Priya Gupta",
+    "text": "The DSA mentorship program was incredibly well-organized. The quizzes and project-based learning helped me crack my dream internship!",
+    "rating": 5,
+    "program": "DSA C/C++"
+  },
+  {
+    "name": "Riya Verma",
+    "text": "I loved how the platform tracks your progress and maintains streaks. It kept me motivated throughout the entire cohort.",
+    "rating": 4,
+    "program": "Machine Learning"
+  },
+  {
+    "name": "Sakshi Jain",
+    "text": "The mentors at TechNeeds are amazing! They provided detailed project reviews and personalized feedback that really helped me grow.",
+    "rating": 5,
+    "program": "App Development"
+  },
+  {
+    "name": "Kavya Reddy",
+    "text": "Being part of TechNeeds gave me the confidence to explore new tech domains. The leaderboard kept the competitive spirit alive!",
+    "rating": 4,
+    "program": "Web Development"
+  },
+  {
+    "name": "Meera Krishnan",
+    "text": "The quiz system is brilliant — timed assessments with instant scoring made learning feel like a game. Highly recommend joining!",
+    "rating": 5,
+    "program": "DSA Java"
+  },
+  {
+    "name": "Ishita Bansal",
+    "text": "TechNeeds bridged the gap between academic knowledge and real-world skills. The project submissions pushed me to build things I'm truly proud of.",
+    "rating": 5,
+    "program": "AR/VR"
+  },
+  {
+    "name": "Diya Choudhury",
+    "text": "From day one, the structured approach and supportive community at TechNeeds made my learning journey smooth and enjoyable.",
+    "rating": 4,
+    "program": "Machine Learning"
+  }
+]

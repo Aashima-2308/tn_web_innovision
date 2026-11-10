@@ -1,0 +1,34 @@
+[
+  {
+    "question": "What is TechNeeds IGDTUW?",
+    "answer": "TechNeeds is the core technical community at IGDTUW, aimed at fostering peer-to-peer learning, mentorship, and skill development. We follow the mindset of all_you_need_to_know_about_tech, running structured cohort-based programs across Web Dev, DSA, ML, App Dev, AR/VR, and more."
+  },
+  {
+    "question": "How do I join a mentorship program?",
+    "answer": "Mentors add mentees to their specific programs and generate unique enrollment numbers along with initial passwords. Once your mentor has enrolled you, you can log in using the Enrollment Number and Password provided to you."
+  },
+  {
+    "question": "How does the scoring system work?",
+    "answer": "You earn scores by completing assigned resources — videos, quizzes, and projects. Video completions are scored based on timeliness (1 point deducted per day late). Quizzes are auto-graded. Projects are scored by your mentor after review. Your total score determines your leaderboard ranking."
+  },
+  {
+    "question": "What are streaks and how do I maintain them?",
+    "answer": "Streaks track consecutive days of activity on the platform. Every day you complete a resource or interact with the platform, your streak increments. Miss a day and it resets to 1. Streaks are displayed on the leaderboard as a tiebreaker."
+  },
+  {
+    "question": "How are quizzes structured?",
+    "answer": "Quizzes have a set time window (start and end time) during which you can attempt them. Each quiz consists of multiple-choice questions with varying marks. You get one attempt only, so make it count! Your answers are auto-graded instantly."
+  },
+  {
+    "question": "How do I submit a project?",
+    "answer": "Navigate to your dashboard, find the project resource, and submit your GitHub repository link, deployed project link, and a brief description. Your mentor will review and verify your submission with a score."
+  },
+  {
+    "question": "Can I see other mentees' progress?",
+    "answer": "Yes! The public Leaderboard page shows all mentees ranked by total score, with streak count and last activity date. Use it to stay motivated and compete with your peers."
+  },
+  {
+    "question": "Who can I contact for help?",
+    "answer": "Reach out to us on WhatsApp at +91 8958898580 or email us at techneedsigdtuw@gmail.com. You can also connect with us on Instagram, Twitter, LinkedIn, and GitHub."
+  }
+]
