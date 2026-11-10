@@ -1,45 +1,102 @@
 const jwt = require('jsonwebtoken');
+
 const Mentor = require('../models/Mentor');
 const Mentee = require('../models/Mentee');
 
+
+// --------------------------------------------------
+// MENTOR AUTHENTICATION
+// --------------------------------------------------
+
 exports.authenticate = async (req, res, next) => {
   const token = req.header('x-auth-token');
-  if (!token) return res.status(401).json({ error: 'No token provided' });
 
-  try {
-    // 1. Verify token
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    console.log('Decoded token:', decoded);
-
-    // 2. Find mentor and attach to request (excluding password)
-    const mentor = await Mentor.findById(decoded.id).select('-password');
-    if (!mentor) return res.status(401).json({ error: 'Mentor not found' });
-
-    req.mentor = mentor; // Attach mentor to request
-    next();
-  } catch (err) {
-    console.error('Token verification error:', err.message);
-    res.status(401).json({ error: 'Invalid token' });
+  if (!token) {
+    return res.status(401).json({
+      error: 'No token provided'
+    });
   }
-};
 
-// --- Mentee Authentication --- //
-exports.authenticateMentee = async (req, res, next) => {
-  const token = req.header('x-auth-token');
-  if (!token) return res.status(401).json({ error: 'No token provided' });
+  if (!process.env.JWT_SECRET) {
+    return res.status(500).json({
+      error: 'JWT_SECRET is not configured'
+    });
+  }
 
   try {
+    // Verify token
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    const mentee = await Mentee.findById(decoded.id).select('-password');
-    
-    if (!mentee) {
-      return res.status(401).json({ error: 'Mentee not found' });
+
+    // Find mentor without password
+    const mentor = await Mentor.findById(decoded.id)
+      .select('-password');
+
+    if (!mentor) {
+      return res.status(401).json({
+        error: 'Mentor not found'
+      });
     }
 
-    req.mentee = mentee;
+    // Attach mentor to request
+    req.mentor = mentor;
+
     next();
+
   } catch (err) {
-    console.error('Mentee token error:', err.message);
-    res.status(401).json({ error: 'Invalid token' });
+    console.error('Mentor authentication error:', err.message);
+
+    return res.status(401).json({
+      error: 'Invalid or expired token'
+    });
   }
 };
+
+
+// --------------------------------------------------
+// MENTEE AUTHENTICATION
+// --------------------------------------------------
+
+exports.authenticateMentee = async (req, res, next) => {
+  const token = req.header('x-auth-token');
+
+  if (!token) {
+    return res.status(401).json({
+      error: 'No token provided'
+    });
+  }
+
+  if (!process.env.JWT_SECRET) {
+    return res.status(500).json({
+      error: 'JWT_SECRET is not configured'
+    });
+  }
+
+  try {
+    // Verify token
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    // Find mentee without password
+    const mentee = await Mentee.findById(decoded.id)
+      .select('-password');
+
+    if (!mentee) {
+      return res.status(401).json({
+        error: 'Mentee not found'
+      });
+    }
+
+    // Attach mentee to request
+    req.mentee = mentee;
+
+    next();
+
+  } catch (err) {
+    console.error('Mentee authentication error:', err.message);
+
+    return res.status(401).json({
+      error: 'Invalid or expired token'
+    });
+  }
+};
+
+
