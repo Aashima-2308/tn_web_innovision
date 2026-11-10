@@ -10,4 +10,4 @@ const connectDB = async () => {
     }
 };
 
-module.exports = connectDB; // This was likely missing
+module.exports = connectDB;
