@@ -1,9 +1,19 @@
 const mongoose = require('mongoose');
 
 const MenteeSchema = new mongoose.Schema({
-  email: { type: String, required: true},
+  email: {
+  type: String,
+  required: true,
+  lowercase: true,
+  trim: true
+},
   name: { type: String, required: true },
-  enrollmentNumber: { type: String, required: true },
+  enrollmentNumber: {
+  type: String,
+  required: true,
+  unique: true,
+  trim: true
+},
   password: { type: String, required: true },
   programs: [{
     type: mongoose.Schema.Types.ObjectId,
@@ -12,7 +22,7 @@ const MenteeSchema = new mongoose.Schema({
   completedResources: [{
     resource: { type: mongoose.Schema.Types.ObjectId, ref: 'Resource' },
     completedOn: { type: Date, default: Date.now },
-    score: { type: Number, default: 0 },
+  score: { type: Number, default: 0, min: 0 },
 
     // Optional fields for project resources
     githubLink: { type: String },
