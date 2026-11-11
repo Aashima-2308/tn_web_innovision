@@ -21,18 +21,18 @@ a {
   text-decoration: none !important;
 }
 
-/* Animations & Micro-Interactions */
+/* Core Keyframes */
 @keyframes pulseGlow {
   0%, 100% { opacity: 0.4; transform: scale(1); }
-  50% { opacity: 0.8; transform: scale(1.08); }
+  50% { opacity: 0.85; transform: scale(1.08); }
 }
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
 }
 @keyframes floatSlow {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(1.5deg); }
 }
 @keyframes spinSlow {
   from { transform: rotate(0deg); }
@@ -42,47 +42,104 @@ a {
   from { transform: rotate(360deg); }
   to { transform: rotate(0deg); }
 }
+@keyframes shimmerSweep {
+  0% { transform: translateX(-100%) skewX(-15deg); }
+  100% { transform: translateX(200%) skewX(-15deg); }
+}
+@keyframes borderPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 63, 177, 0.2); }
+  50% { box-shadow: 0 0 0 8px rgba(0, 63, 177, 0); }
+}
+@keyframes radarSweep {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
 
 .animate-pulse-glow { animation: pulseGlow 6s ease-in-out infinite; }
 .animate-blink { animation: blink 1s step-end infinite; }
-.animate-float { animation: floatSlow 6s ease-in-out infinite; }
+.animate-float { animation: floatSlow 5.5s ease-in-out infinite; }
 .animate-spin-slow { animation: spinSlow 32s linear infinite; }
 .animate-spin-reverse { animation: spinSlowReverse 44s linear infinite; }
+.animate-border-pulse { animation: borderPulse 2.5s infinite; }
 
-/* Scroll Reveal Classes */
+/* Scroll-Triggered Stagger Reveal */
 .reveal-init {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(32px) scale(0.96);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.75s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .reveal-active {
   opacity: 1 !important;
-  transform: translateY(0) !important;
+  transform: translateY(0) scale(1) !important;
 }
 
-/* Micro-interaction interactive styles */
+/* Bouncy Buttons */
 .btn-interactive {
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.25s ease,
+              background-color 0.2s ease;
 }
 .btn-interactive:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px -5px rgba(0, 63, 177, 0.25);
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 14px 28px -6px rgba(0, 63, 177, 0.3);
 }
 .btn-interactive:active {
-  transform: translateY(1px) scale(0.98);
+  transform: translateY(1px) scale(0.95);
 }
 .btn-interactive:hover .hover-nudge {
-  transform: translateX(4px);
+  transform: translateX(5px) scale(1.1);
 }
 .hover-nudge {
-  transition: transform 0.2s ease;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* Interactive Card Hover Elevation */
+/* Bouncy Cards */
 .interactive-card {
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease;
 }
 .interactive-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 32px -8px rgba(17, 26, 54, 0.08);
+  transform: translateY(-8px) scale(1.015);
+  box-shadow: 0 22px 42px -10px rgba(0, 63, 177, 0.14);
+  border-color: rgba(0, 63, 177, 0.35);
+}
+
+/* "What We Offer" 5 Sub-Components Bouncy Pill Animation */
+.offer-pill-anim {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.3s ease,
+              background-color 0.3s ease,
+              border-color 0.3s ease;
+}
+.offer-pill-anim::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.65), transparent);
+  transform: translateX(-150%) skewX(-15deg);
+}
+.offer-pill-anim:hover {
+  transform: translateY(-5px) scale(1.035);
+  box-shadow: 0 12px 24px -6px rgba(0, 63, 177, 0.18);
+}
+.offer-pill-anim:hover::after {
+  animation: shimmerSweep 0.75s ease forwards;
+}
+.offer-pill-anim:active {
+  transform: scale(0.96);
+}
+.offer-pill-icon {
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+              background-color 0.3s ease,
+              color 0.3s ease;
+}
+.offer-pill-anim:hover .offer-pill-icon {
+  transform: scale(1.18) rotate(-10deg);
 }
