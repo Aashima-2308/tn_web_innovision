@@ -1,11 +1,9 @@
+"use client";
+
 import "./globals.css";
 import Navbar from "@/components/navbar/navbar";
 import Footer from "@/components/footer/footer";
-
-export const metadata = {
-  title: "TechNeeds IGDTUW",
-  description: "Empowering the Next Generation of Tech Mentorship",
-};
+import { usePathname } from "next/navigation";
 
 const tailwindConfigCode = `
   tailwind.config = {
@@ -112,16 +110,25 @@ const tailwindConfigCode = `
 `;
 
 export default function RootLayout({ children }) {
+  const pathname = usePathname();
+  const isConsoleRoute =
+    pathname?.startsWith("/admin") ||
+    pathname?.startsWith("/mentor") ||
+    pathname?.startsWith("/dashboard");
+
   return (
     <html lang="en" className="scroll-smooth">
       <head>
+        <title>TechNeeds IGDTUW</title>
         <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
         <script dangerouslySetInnerHTML={{ __html: tailwindConfigCode }} />
       </head>
       <body className="bg-surface font-body-md text-body-md text-on-surface antialiased selection:bg-primary-fixed selection:text-primary">
-        <Navbar />
-        <main className="w-full pt-20 bg-surface">{children}</main>
-        <Footer />
+        {!isConsoleRoute && <Navbar />}
+        <main className={isConsoleRoute ? "w-full bg-surface" : "w-full pt-20 bg-surface"}>
+          {children}
+        </main>
+        {!isConsoleRoute && <Footer />}
       </body>
     </html>
   );
